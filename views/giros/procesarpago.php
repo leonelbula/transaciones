@@ -77,11 +77,15 @@
 								</form>
 
 							</div>
-							<div class="modal-footer">
-								<a href="<?=URL_BASE?>giros/" >
-								<button class="btn btn-secondary" type="button" >Cancelar</button>
-								</a>
-							</div>
+							<form class="" method="post" action="<?= URL_BASE ?>giros/posponer">
+								<input name="id" type="hidden" value="<?= $_GET['id']?>"/>
+								<input name="estado" type="hidden" value="3"/>
+								<div class="modal-footer">
+									
+								<button class="btn btn-secondary" type="submit" >Posponer</button>
+								
+								</div>
+							</form>
 						</div>
 					</div>
 				

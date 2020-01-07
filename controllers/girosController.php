@@ -123,4 +123,56 @@ class girosController {
 		}
 			require_once 'views/usuario_layout/footer.php';
 	}
+	public function posponer() {
+		require_once 'views/usuario_layout/header.php';
+		
+		if(isset($_POST['id'])){
+			$id = $_POST['id'];
+			$estado = $_POST['estado'];
+			$giros = new Giros();
+			$giros->setId($id);
+			$giros->setEstado($estado);
+			$resp = $giros->Estado();
+			
+			if($resp){
+				echo'<script>
+
+					swal({
+						  type: "success",
+						  title: "Registro Pospuesto correctamente",
+						  showConfirmButton: true,
+						  confirmButtonText: "Cerrar"
+						  }).then(function(result){
+							if (result.value) {
+
+							window.location = "index";
+
+							}
+						})
+
+					</script>';
+			}else{
+				echo'<script>
+
+					swal({
+						  type: "error",
+						  title: "¡Registro no validado !",
+						  showConfirmButton: true,
+						  confirmButtonText: "Cerrar"
+						  }).then(function(result){
+							if (result.value) {
+
+							window.location = "index";
+
+							}
+						})
+
+			  	</script>';
+			}
+			require_once 'views/giros/procesarpago.php';
+		
+		} else {
+			
+		}
+	}
 }

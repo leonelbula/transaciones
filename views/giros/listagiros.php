@@ -79,7 +79,14 @@
 								<td><?= $num_cuenta ?></td>
 								<td><?= $row2->valor ?></td>
 								<td><?php
-									if ($row2->estado == 2) {
+									if ($row2->estado == 3) {
+										echo '<a href="" class="btn btn-warning btn-icon-split">
+											<span class="icon text-white-50">
+											  <i class="fas fa-exclamation-triangle"></i>
+											</span>
+											<span class="text">Sin Confirmar</span>
+										  </a>';
+									} elseif ($row2->estado == 2) {
 										echo '<a href="" class="btn btn-warning btn-icon-split">
 											<span class="icon text-white-50">
 											  <i class="fas fa-exclamation-triangle"></i>
@@ -103,8 +110,6 @@
 									}
 									?></td>
 								<td><div class="btn-group">
-
-
 
 										<a href="#" class="btn btn-success btn-icon-split" data-toggle="modal" data-target="#RegistrarTransaccion">
 											<span class="icon text-white-50">

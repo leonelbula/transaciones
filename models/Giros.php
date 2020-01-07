@@ -107,5 +107,15 @@ class Giros {
 		}
 		return $resp;
 	}
+	public function Estado() {
+		$sql = "UPDATE envios SET estado = {$this->getEstado()} WHERE id = {$this->getId()}";
+		$resul = $this->db->query($sql);
+		$resp = FALSE;
+		
+		if($resul){
+			$resp = TRUE;
+		}
+		return $resp;
+	}
 	
 }
