@@ -10,10 +10,10 @@
                     <div class="mr-auto"></div>
                     <ul class="navbar-nav">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="<?=URL_BASE?>">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">registrate</a>
+                            <a class="nav-link" href="<?=URL_BASE?>frontend/registro">registrate</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="<?=URL_BASE?>frontend/ingreso">Ingresa</a>

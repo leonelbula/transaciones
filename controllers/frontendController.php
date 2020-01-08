@@ -130,6 +130,15 @@ class frontendController{
 							</script>';
 		}
 	}
-	
+	public function salir() {
+		if (isset($_SESSION['identity'])) {
+			unset($_SESSION['identity']);
+		}
+		
+		//header('Location:'.URL_BASE);
+		echo'<script>
+				window.location="' . URL_BASE . '";
+			</script>';
+	}
 }
 

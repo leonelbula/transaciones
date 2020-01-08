@@ -1,5 +1,6 @@
 <?php
 require_once 'models/Giros.php';
+require_once 'models/Solicitudes.php';
 
 class girosController {
 
@@ -13,6 +14,18 @@ class girosController {
 		$giros = new Giros();
 		$giros->setId_usuario($id_usuario);
 		$detalles = $giros->listarTransacciones();
+		return $detalles;
+	}
+	static public function ListaTransaccionesPendiantes($id_usuario) {
+		$giros = new Giros();
+		$giros->setId_usuario($id_usuario);
+		$detalles = $giros->listarTransaccionesPendientes();
+		return $detalles;
+	}
+	static public function ListaSolicitudes($id_usuario) {
+		$solicitud = new Solicitudes();
+		$solicitud->setId_usuario($id_usuario);
+		$detalles = $solicitud->listarSolicitudes();
 		return $detalles;
 	}
 	public function guardar() {
@@ -107,6 +120,7 @@ class girosController {
 			  	</script>';
 		}
 	}
+	
 	public function procesar() {
 		require_once 'views/usuario_layout/header.php';
 		require_once 'views/usuario_layout/menu.php';		
@@ -123,6 +137,7 @@ class girosController {
 		}
 			require_once 'views/usuario_layout/footer.php';
 	}
+	
 	public function posponer() {
 		require_once 'views/usuario_layout/header.php';
 		
@@ -173,6 +188,108 @@ class girosController {
 		
 		} else {
 			
+		}
+	}
+	
+	public function solicitudes() {
+		require_once 'views/usuario_layout/header.php';
+		require_once 'views/usuario_layout/menu.php';		
+		require_once 'views/giros/listasolicitudes.php';
+		require_once 'views/usuario_layout/footer.php';
+	}
+	public function guardarsolicitud() {
+		require_once 'views/usuario_layout/header.php';
+		if($_POST['idUsuario']){
+			var_dump($_POST);
+			$id_usuario = isset($_POST['idUsuario']) ? $_POST['idUsuario']:FALSE;
+			$id_envio = isset($_POST['idenvio']) ? $_POST['idenvio']:FALSE;
+			$detalles = isset($_POST['detalles']) ? $_POST['detalles']:FALSE;
+			
+			if($id_usuario && $id_envio){
+				$anexo = 'NULL';
+				$estado = 1;
+				
+				$solicitud = new Solicitudes();
+				
+				$solicitud->setId_usuario($id_usuario);
+				$solicitud->setId_Transaccion($id_envio);
+				$solicitud->setDetalles($detalles);
+				$solicitud->setFecha(date('Y-m-d'));
+				$solicitud->setAnexo($anexo);
+				$solicitud->setEstado($estado);
+				
+				$resp = $solicitud->Guardar();
+				
+				if($resp){
+					echo'<script>
+
+					swal({
+						  type: "success",
+						  title: "Solicitud generada correctamente",
+						  showConfirmButton: true,
+						  confirmButtonText: "Cerrar"
+						  }).then(function(result){
+							if (result.value) {
+
+							window.location = "solicitudes";
+
+							}
+						})
+
+					</script>';
+				}else{
+					echo'<script>
+
+					swal({
+						  type: "error",
+						  title: "¡Registro no Guardado !",
+						  showConfirmButton: true,
+						  confirmButtonText: "Cerrar"
+						  }).then(function(result){
+							if (result.value) {
+
+							window.location = "solicitudes";
+
+							}
+						})
+
+			  	</script>';
+				}
+			}else{
+				echo'<script>
+
+					swal({
+						  type: "error",
+						  title: "¡Registro no validado !",
+						  showConfirmButton: true,
+						  confirmButtonText: "Cerrar"
+						  }).then(function(result){
+							if (result.value) {
+
+							window.location = "solicitudes";
+
+							}
+						})
+
+			  	</script>';
+			}
+		}else{
+			echo'<script>
+
+					swal({
+						  type: "error",
+						  title: "¡Registro no validado !",
+						  showConfirmButton: true,
+						  confirmButtonText: "Cerrar"
+						  }).then(function(result){
+							if (result.value) {
+
+							window.location = "solicitudes";
+
+							}
+						})
+
+			  	</script>';
 		}
 	}
 }

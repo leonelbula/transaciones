@@ -11,14 +11,10 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-12 site-title">
                         <h3 class="title-text">Registrate</h3>
-                        <h1 class="title-text text-uppercase">I am Akshay</h1>
-                        <h4 class="title-text text-uppercase">Senior Wordpress Developer</h4>
+                        <h1 class="title-text text-uppercase">Empiesa hoy</h1>
+                        <h4 class="title-text text-uppercase">Envia giros a tus familiares de una forma facil </h4>
                         <div class="site-buttons">
-                            <div class="d-flex flex-row flex-wrap">
-                                <button type="button" class="btn button primary-button mr-4 text-uppercase">hire
-                                    me</button>
-                                <button type="button" class="btn button secondary-button text-uppercase">Get cv</button>
-                            </div>
+                            
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 banner-image">
@@ -140,7 +136,7 @@
                         <div class="col-lg-3 col-md-6 col-sm-12">
                             <div class="services">
                                 <div class="sevices-img text-center py-4">
-                                    <img src="./img/services/s2.png" alt="Services-2">
+                                    <img src="<?=URL_BASE?>assets/img/services/s2.png" alt="Services-2">
                                 </div>
                                 <div class="card-body text-center">
                                     <h5 class="card-title text-uppercase font-roboto">ux/ui desing</h5>
@@ -155,7 +151,7 @@
                         <div class="col-lg-3 col-md-6 col-sm-12">
                             <div class="services">
                                 <div class="sevices-img text-center py-4">
-                                    <img src="./img/services/s3.png" alt="Services-3">
+                                    <img src="<?=URL_BASE?>assets/img/services/s3.png" alt="Services-3">
                                 </div>
                                 <div class="card-body text-center">
                                     <h5 class="card-title text-uppercase font-roboto">web design</h5>
@@ -170,7 +166,7 @@
                         <div class="col-lg-3 col-md-6 col-sm-12">
                             <div class="services">
                                 <div class="sevices-img text-center py-4">
-                                    <img src="./img/services/s4.png" alt="Services-4">
+                                    <img src="<?=URL_BASE?>assets/img/services/s4.png" alt="Services-4">
                                 </div>
                                 <div class="card-body text-center">
                                     <h5 class="card-title text-uppercase font-roboto">seo optimize</h5>

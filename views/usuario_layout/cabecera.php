@@ -7,7 +7,7 @@
           </button>
 
          <h2 class="header">
-                  Alerts Center
+                  Nombre del sitio
                 </h2>
           <ul class="navbar-nav ml-auto">
 

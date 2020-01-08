@@ -82,7 +82,12 @@ class Giros {
 		$this->db = Database::connect();
 	}
 	public function listarTransacciones() {		
-		$sql = "SELECT * FROM envios WHERE id_usuario = {$this->getId_usuario()}";
+		$sql = "SELECT * FROM envios WHERE id_usuario = {$this->getId_usuario()} ORDER BY id DESC";
+		$resul = $this->db->query($sql);
+		return $resul;
+	}
+	public function listarTransaccionesPendientes() {		
+		$sql = "SELECT e.id ,e.valor, e.estado,e.fecha, d.titular, d.num_cuenta FROM envios e, datos_bancario d WHERE e.id_usuario = {$this->getId_usuario()} AND e.id_datosbancarios = d.id AND e.estado = 1";
 		$resul = $this->db->query($sql);
 		return $resul;
 	}

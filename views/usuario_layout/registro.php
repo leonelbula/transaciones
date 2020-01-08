@@ -10,7 +10,7 @@
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">¡Crea una cuenta!</h1>
               </div>
-              <form class="user">
+				<form class="user" method="post" action="<?=URL_BASE?>">
                 <div class="form-group">                 
                     <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="Nombre de Usuario">                                   
                 </div>

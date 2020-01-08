@@ -26,6 +26,7 @@
 					<thead>
 						<tr>
 							<th>#</th>
+							<th>Fecha</th>
 							<th>Titular</th>
 							<th>Banco</th>
 							<th>N° Cuenta</th>
@@ -39,6 +40,7 @@
 					<tfoot>
 						<tr>
 							<th>#</th>
+							<th>Fecha</th>
 							<th>Titular</th>
 							<th>Banco</th>
 							<th>N° Cuenta</th>
@@ -74,17 +76,18 @@
 							?>
 							<tr>
 								<td><?= $i++ ?></td>
+								<td><?= $row2->fecha ?></td>
 								<td><?= $titular ?></td>
 								<td><?= $nombrebanco ?></td>
 								<td><?= $num_cuenta ?></td>
 								<td><?= $row2->valor ?></td>
 								<td><?php
 									if ($row2->estado == 3) {
-										echo '<a href="" class="btn btn-warning btn-icon-split">
+										echo '<a href="" class="btn btn-primary btn-icon-split">
 											<span class="icon text-white-50">
-											  <i class="fas fa-exclamation-triangle"></i>
+											  <i class="fas fa-flag"></i>
 											</span>
-											<span class="text">Sin Confirmar</span>
+											<span class="text">En Espera</span>
 										  </a>';
 									} elseif ($row2->estado == 2) {
 										echo '<a href="" class="btn btn-warning btn-icon-split">
@@ -110,27 +113,57 @@
 									}
 									?></td>
 								<td><div class="btn-group">
-
-										<a href="#" class="btn btn-success btn-icon-split" data-toggle="modal" data-target="#RegistrarTransaccion">
+										<?php if ($row2->estado == 3) {
+										echo '<a href="'.URL_BASE.'giros/procesar&id='.$row2->id.'" class="btn btn-info btn-icon-split">
+												<span class="icon text-white-50">
+												  <i class="fas fa-info-circle"></i>
+												</span>
+												<span class="text">Continuar</span>
+											  </a>';
+										} else if($row2->estado == 2){
+											echo '<a href="" class="btn btn-warning btn-icon-split" data-toggle="modal" data-target="#confirmarTransaccion">
+											<span class="icon text-white-50">
+											  <i class="fas fa-exclamation-triangle"></i>
+											</span>
+											<span class="text">Confirmar</span>
+										</a>';
+										}else if($row2->estado == 1){
+										echo '<a href="#" class="btn btn-secondary btn-icon-split">
+										<span class="icon text-white-50">
+										  <i class="fas fa-arrow-right"></i>
+										</span>
+										<span class="text">Valindando</span>
+									  </a>';
+										}else{
+											echo '<a href="" class="btn btn-success btn-icon-split" data-toggle="modal" data-target="#confirmarTransaccion">
 											<span class="icon text-white-50">
 												<i class="fas fa-check"></i>
 											</span>
-											<span class="text">Confirmar</span>
-										</a>
+											<span class="text">Procesada</span>
+										</a>';
+										}?>
+									</div>  
+								</td>
+								<td><div class="btn-group">
+
+										<?php if ($row2->estado == 3 || $row2->estado == 2) {
+												echo '<button class="btn btn-danger btnEliminartransacion" idtransacion="'.$row2->id.'"><i class="fa fa-trash"></i> Eliminar</button>';
+										}?>
+
+										
 
 									</div>  
 								</td>
 								<td><div class="btn-group">
 
-
-
-										<button class="btn btn-danger btnEliminarCuenta" idtransacion="<?= $row2->id ?>"><i class="fa fa-trash"></i> Eliminar</button>
-
-									</div>  
-								</td>
-								<td><div class="btn-group">
-
-
+										<?php if ($row2->anexo != 'NULL') {
+												echo '<a href="" class="btn btn-light btn-icon-split">
+												<span class="icon text-gray-600">
+												  <i class="fas fa-check"></i>
+												</span>
+												<span class="text">Respuesta</span>
+											  </a>';
+										} ?>
 
 									
 
