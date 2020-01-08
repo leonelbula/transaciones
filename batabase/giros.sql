@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 06-01-2020 a las 23:46:26
+-- Tiempo de generación: 08-01-2020 a las 11:52:38
 -- Versión del servidor: 5.7.26
 -- Versión de PHP: 7.2.18
 
@@ -128,15 +128,44 @@ CREATE TABLE IF NOT EXISTS `envios` (
   PRIMARY KEY (`id`),
   KEY `id_usuario` (`id_usuario`),
   KEY `id_datosbancarios` (`id_datosbancarios`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `envios`
 --
 
 INSERT INTO `envios` (`id`, `id_usuario`, `id_datosbancarios`, `fecha`, `valor`, `estado`, `anexo_usuario`, `anexo`) VALUES
-(1, 1, 1, '2020-01-06', 100000, 2, 'NULL', 'NULL'),
-(2, 1, 1, '2020-01-06', 100000, 2, 'NULL', 'NULL');
+(1, 1, 1, '2020-01-06', 100000, 0, 'NULL', 'NULL'),
+(2, 1, 1, '2020-01-06', 100000, 1, 'NULL', 'NULL'),
+(3, 1, 2, '2020-01-07', 20000, 2, 'NULL', 'NULL'),
+(4, 1, 2, '2020-01-07', 200000, 3, 'NULL', 'NULL');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `solicitudes`
+--
+
+DROP TABLE IF EXISTS `solicitudes`;
+CREATE TABLE IF NOT EXISTS `solicitudes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_usuario` int(11) NOT NULL,
+  `id_envio` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  `deatalles` text COLLATE utf8_spanish_ci NOT NULL,
+  `estado` int(11) NOT NULL,
+  `anexo` text COLLATE utf8_spanish_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `solicitudes`
+--
+
+INSERT INTO `solicitudes` (`id`, `id_usuario`, `id_envio`, `fecha`, `deatalles`, `estado`, `anexo`) VALUES
+(1, 1, 2, '2020-01-08', 'me gustarÃ­a saber como va el proceso							\r\n						', 1, 'NULL'),
+(2, 1, 2, '2020-01-08', 'me gustarÃ­a saber como va el proceso							\r\n						', 1, 'NULL'),
+(3, 1, 2, '2020-01-08', 'me gustarÃ­a saber como va el proceso							\r\n						', 1, 'NULL');
 
 -- --------------------------------------------------------
 
