@@ -1,7 +1,7 @@
 <?php
 require_once 'models/Usuario.php';
 
-class frontendController{
+class homeController{
 	
 	public function index() {
 		require_once 'views/layout/header.php';
@@ -66,7 +66,7 @@ class frontendController{
 							  }).then(function(result){
 								if (result.value) {
 
-								window.location = "'. URL_BASE .'frontend/home";
+								window.location = "'. URL_BASE .'home/home";
 
 								}
 							})
@@ -83,7 +83,7 @@ class frontendController{
 									  }).then(function(result){
 										if (result.value) {
 
-										window.location = "'. URL_BASE.'frontend/ingreso";
+										window.location = "'. URL_BASE.'home/ingreso";
 
 										}
 									})
@@ -103,7 +103,7 @@ class frontendController{
 									  }).then(function(result){
 										if (result.value) {
 
-										window.location = "'. URL_BASE.'frontend/ingreso";
+										window.location = "'. URL_BASE.'home/ingreso";
 
 										}
 									})
@@ -122,7 +122,7 @@ class frontendController{
 									  }).then(function(result){
 										if (result.value) {
 
-										window.location = "'. URL_BASE.'frontend/ingreso";
+										window.location = "'. URL_BASE.'home/ingreso";
 
 										}
 									})

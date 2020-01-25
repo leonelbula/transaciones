@@ -13,10 +13,10 @@
                             <a class="nav-link" href="<?=URL_BASE?>">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?=URL_BASE?>frontend/registro">registrate</a>
+                            <a class="nav-link" href="<?=URL_BASE?>home/registro">registrate</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?=URL_BASE?>frontend/ingreso">Ingresa</a>
+                            <a class="nav-link" href="<?=URL_BASE?>home/ingreso">Ingresa</a>
                         </li>                        
 
                     </ul>

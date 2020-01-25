@@ -184,7 +184,7 @@
 					<div class="form-group">
 						<label>Tipo</label>
 						<select class="form-control select2 seleccionarTipoCuenta" style="width: 100%;" name="tipo_cuenta" required>
-							 <option class="optionEditarTipoCuenta"></option>
+							 <option class="seleccionarEstadobanco"></option>
 							<?php
 							$listacuentas = bancosController::tiposdecuenta();
 							while ($row1 = $listacuentas->fetch_object()) :
