@@ -4,15 +4,16 @@ require_once 'config/DataBase.php';
 
 class Usuario{
 	
-	public $db;
-	private $id_usuario;
+	private $id;
 	private $nombre;
 	private $password;
-	private $estado;
+	private $email;
+	private $foto; 
+	private $verificacion;
+	private $emailEncriptado;
 	
-			
-	function getId_usuario() {
-		return $this->id_usuario;
+	function getId() {
+		return $this->id;
 	}
 
 	function getNombre() {
@@ -23,19 +24,24 @@ class Usuario{
 		return $this->password;
 	}
 
-	function getEstado() {
-		return $this->estado;
+	function getEmail() {
+		return $this->email;
 	}
 
-	function getTipo() {
-		return $this->tipo;
-	}
-	function getFecha() {
-		return $this->fecha;
+	function getFoto() {
+		return $this->foto;
 	}
 
-	function setId_usuario($id_usuario) {
-		$this->id_usuario = $id_usuario;
+	function getVerificacion() {
+		return $this->verificacion;
+	}
+
+	function getEmailEncriptado() {
+		return $this->emailEncriptado;
+	}
+
+	function setId($id) {
+		$this->id = $id;
 	}
 
 	function setNombre($nombre) {
@@ -43,72 +49,59 @@ class Usuario{
 	}
 
 	function setPassword($password) {
-		$this->password = $password;
+		$this->password = $this->db->real_escape_string($password);
 	}
 
-	function setEstado($estado) {
-		$this->estado = $estado;
+	function setEmail($email) {
+		$this->email = $this->db->real_escape_string($email);
 	}
 
-	function setTipo($tipo) {
-		$this->tipo = $tipo;
+	function setFoto($foto) {
+		$this->foto = $this->db->real_escape_string($foto);
 	}
-	function setFecha($fecha) {
-		$this->fecha = $fecha;
+
+	function setVerificacion($verificacion) {
+		$this->verificacion = $verificacion;
+	}
+
+	function setEmailEncriptado($emailEncriptado) {
+		$this->emailEncriptado = $emailEncriptado;
 	}
 
 	public function __construct() {
 		$this->db = Database::connect();
 	}
-	public function MostrarTodos() {
-		$sql = "SELECT * FROM usuarios ";
+	public function Registro() {
+		$sql = "INSERT INTO  usuario VALUES (NULL,'{$this->getNombre()}','{$this->getPassword()}','{$this->getEmail()}',{$this->getVerificacion()},'{$this->getEmailEncriptado()}')";
 		$resul = $this->db->query($sql);
 		return $resul;
 	}
-	public function MostrarUsuarioId() {
-		$sql = "SELECT * FROM usuarios WHERE id_usuario = {$this->getId_usuario()}";
+	public function VerificarEmail() {
+		$sql = "SELECT * FROM usuario WHERE email = '{$this->getEmail()}'";
 		$resul = $this->db->query($sql);
 		return $resul;
 	}
-	public function save() {
-		$sql = "INSERT INTO usuarios VALUE(NULL,'{$this->getNombre()}','{$this->getPassword()}','{$this->getTipo()}',{$this->getEstado()},'{$this->getFecha()}')";
-		$save = $this->db->query($sql);
-		
-		$resul = false;
-		
-		if($save){
-			 $resul = true;
+	public function VerificarCuenta() {
+		$sql = "UPDATE usuario SET verificacion = {$this->getVerificacion()}  WHERE emailEncriptado = '{$this->getEmailEncriptado()}'";
+		$resp = $this->db->query($sql);
+		$resul = FALSE;
+		if($resp){
+			$resul = TRUE;
 		}
 		return $resul;
 	}
-	public function Actulizar() {
-		$sql = "UPDATE usuarios SET nombre='{$this->getNombre()}',password='{$this->getPassword()}',estado={$this->getEstado()},tipo='{$this->getTipo()}' WHERE id_usuario = {$this->getId_usuario()}";
-		$save = $this->db->query($sql);
-		
-		$resul = false;
-		
-		if($save){
-			 $resul = true;
-		}
+	public function MostrarUsuario() {
+		$sql = "SELECT * FROM usuario WHERE email = '{$this->getEmail()}'";
+		$resul = $this->db->query($sql);
 		return $resul;
-	}
-	public function Eliminar() {
-		$sql = "DELETE FROM usuario WHERE id_usuario = {$this->getId_usuario()} ";
-		$save = $this->db->query($sql);
 		
-		$resul = false;
-		
-		if($save){
-			 $resul = true;
-		}
-		return $resul;
 	}
 	public function Login() {
 		$result = FALSE;
-		$nombre = $this->nombre;
+		$email = $this->email;
 		$password = $this->password;
 			
-		$sql = "SELECT * FROM usuario WHERE email = '$nombre'";
+		$sql = "SELECT * FROM usuario WHERE email = '$email'";
 		$login = $this->db->query($sql);
 		
 		if($login && $login->num_rows == 1){
@@ -123,6 +116,16 @@ class Usuario{
 		}
 		return $result;
 	}
+	public function EditarPerfil() {
+		$sql = "UPDATE usuario SET nombre='{$this->getNombre()}',password='{$this->getPassword()}',email='{$this->getEmail()}' WHERE id = {$this->getId()}";
+		$resp = $this->db->query($sql);
+		$resul = FALSE;
+		if($resp){
+			$resul = TRUE;
+		}
+		return $resul;
+	}
+	
 }
 
 

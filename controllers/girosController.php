@@ -124,11 +124,7 @@ class girosController {
 	public function procesar() {
 		require_once 'views/usuario_layout/header.php';
 		require_once 'views/usuario_layout/menu.php';		
-		if(isset($_GET['id'])){
-			$id = $_GET['id'];
-			$giros = new Giros();
-			$giros->setId($id);
-			$detalles = $giros->verTransacciones();
+		if(isset($_GET['id'])){			
 			
 			require_once 'views/giros/procesarpago.php';
 		
@@ -137,10 +133,122 @@ class girosController {
 		}
 			require_once 'views/usuario_layout/footer.php';
 	}
+	static public function transacionesUsuario($idtran,$idUsuario) {
+		
+			$giros = new Giros();
+			$giros->setId($idtran);
+			$giros->setId_usuario($idUsuario);
+			$detalles = $giros->verTransaccionesUsuario();
+			return $detalles;
+	}
+	public function confirmar() {
+		require_once 'views/usuario_layout/header.php';
+		require_once 'views/usuario_layout/menu.php';		
+		if(isset($_GET['id'])){			
+			
+			require_once 'views/giros/confirmar.php';
+		
+		} else {
+			
+		}
+			require_once 'views/usuario_layout/footer.php';
+	}
+	
+	public function confirmarpago() {
+		require_once 'views/usuario_layout/header.php';
+		require_once 'views/usuario_layout/menu.php';		
+		if($_POST['id']){
+			$id = $_POST['id'];
+			$img = isset($_FILES['imagen']) ? $_FILES['imagen']:FALSE;
+			if($id && $img){
+				$trans = new Giros();
+				$estado = 1;
+				$trans->setId($id);
+				$trans->setEstado($estado);
+				
+				$file = $_FILES['imagen'];
+				$fileNom = $file['name'];
+				$type = $file['type'];
+				
+				$dir = 'image/transaciones';
+				
+				if ($type == 'image/jpg' || $type == 'image/jpeg' || $type == 'image/png') {
+					
+					if(!is_dir($dir)){
+						mkdir($dir, 0777,TRUE);
+					}
+					
+					 move_uploaded_file($file['tmp_name'],$dir.'/'.$fileNom);
+					
+					$trans->setAnexo_usuario($fileNom);
+					
+				}else{
+					$fileNom = "";
+					$trans->setAnexo_usuario($fileNom);
+				}
+				
+				$resp = $trans->Comfirmar();
+				
+				if($resp){
+					echo'<script>
+
+					swal({
+						  type: "success",
+						  title: "Registro validado correctamente",
+						  showConfirmButton: true,
+						  confirmButtonText: "Cerrar"
+						  }).then(function(result){
+							if (result.value) {
+
+							window.location = "index";
+
+							}
+						})
+
+					</script>';
+				}else{
+					echo'<script>
+
+					swal({
+						  type: "error",
+						  title: "¡Registro no validado !",
+						  showConfirmButton: true,
+						  confirmButtonText: "Cerrar"
+						  }).then(function(result){
+							if (result.value) {
+
+							window.location = "index";
+
+							}
+						})
+
+			  	</script>';
+				}
+				
+			}
+		}else{
+			echo'<script>
+
+					swal({
+						  type: "error",
+						  title: "¡Registro no validado !",
+						  showConfirmButton: true,
+						  confirmButtonText: "Cerrar"
+						  }).then(function(result){
+							if (result.value) {
+
+							window.location = "index";
+
+							}
+						})
+
+			  	</script>';
+		}
+	}
 	
 	public function posponer() {
 		require_once 'views/usuario_layout/header.php';
-		
+		require_once 'views/usuario_layout/menu.php';
 		if(isset($_POST['id'])){
 			$id = $_POST['id'];
 			$estado = $_POST['estado'];
@@ -184,7 +292,7 @@ class girosController {
 
 			  	</script>';
 			}
-			require_once 'views/giros/procesarpago.php';
+			
 		
 		} else {
 			
@@ -200,7 +308,7 @@ class girosController {
 	public function guardarsolicitud() {
 		require_once 'views/usuario_layout/header.php';
 		if($_POST['idUsuario']){
-			var_dump($_POST);
+			
 			$id_usuario = isset($_POST['idUsuario']) ? $_POST['idUsuario']:FALSE;
 			$id_envio = isset($_POST['idenvio']) ? $_POST['idenvio']:FALSE;
 			$detalles = isset($_POST['detalles']) ? $_POST['detalles']:FALSE;

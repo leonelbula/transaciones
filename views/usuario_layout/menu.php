@@ -39,7 +39,7 @@ if (!isset($_SESSION['identity'])) {
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="<?=URL_BASE?>frontend/home">
+        <a class="nav-link" href="<?=URL_BASE?>home/home">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Home</span></a>
       </li>
@@ -191,7 +191,7 @@ if (!isset($_SESSION['identity'])) {
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="<?=URL_BASE?>frontend/salir">
+                <a class="dropdown-item" href="<?=URL_BASE?>home/salir">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Salir
                 </a>

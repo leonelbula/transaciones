@@ -87,7 +87,7 @@ class Solicitudes {
 		if($resul){
 			$resp = TRUE;
 		}
-		return $resp;
+		return $sql;
 	}
 }
 

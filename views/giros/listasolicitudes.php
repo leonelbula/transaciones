@@ -114,7 +114,7 @@
 					<div class="form-group">
 						<label>Cuenta a enviar </label>
 						<select class="form-control select2" style="width: 100%;" required name="idenvio">
-							<option>Selecione un Cuenta</option>
+							<option value="">Selecione un Cuenta</option>
 							<?php
 							$id_usuario = $_SESSION['identity']->id;
 							$listaTransacciones = girosController::ListaTransaccionesPendiantes($id_usuario);

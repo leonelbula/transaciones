@@ -96,6 +96,11 @@ class Giros {
 		$resul = $this->db->query($sql);
 		return $resul;
 	}
+	public function verTransaccionesUsuario() {		
+		$sql = "SELECT e.id ,e.valor, d.titular, d.num_cuenta FROM envios e, datos_bancario d WHERE e.id = {$this->getId()} AND e.id_datosbancarios = d.id AND e.id_usuario = {$this->getId_usuario()}";
+		$resul = $this->db->query($sql);
+		return $resul;
+	}
 	public function Ultimatransaccion() {		
 		$sql = "SELECT * FROM envios WHERE id_usuario = {$this->getId_usuario()} ORDER BY id DESC LIMIT 1";
 		$resul = $this->db->query($sql);
@@ -114,6 +119,16 @@ class Giros {
 	}
 	public function Estado() {
 		$sql = "UPDATE envios SET estado = {$this->getEstado()} WHERE id = {$this->getId()}";
+		$resul = $this->db->query($sql);
+		$resp = FALSE;
+		
+		if($resul){
+			$resp = TRUE;
+		}
+		return $resp;
+	}
+	public function Comfirmar() {
+		$sql = "UPDATE envios SET estado = {$this->getEstado()}, anexo_usuario = '{$this->getAnexo_usuario()}' WHERE id = {$this->getId()}";
 		$resul = $this->db->query($sql);
 		$resp = FALSE;
 		

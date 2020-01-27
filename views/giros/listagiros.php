@@ -35,6 +35,7 @@
 							<th>Anexo Usuario</th>
 							<th>Acciones</th>
 							<th>Observaciones</th>
+							<th>Confirmacion</th>
 						</tr>
 					</thead>
 					<tfoot>
@@ -49,6 +50,7 @@
 							<th>Anexo Usuario</th>
 							<th>Acciones</th>
 							<th>Observaciones</th>
+							<th>Confirmacion</th>
 						</tr>
 					</tfoot>
 					<tbody>
@@ -121,7 +123,7 @@
 												<span class="text">Continuar</span>
 											  </a>';
 										} else if($row2->estado == 2){
-											echo '<a href="" class="btn btn-warning btn-icon-split" data-toggle="modal" data-target="#confirmarTransaccion">
+											echo '<a href="'.URL_BASE.'giros/confirmar&id='.$row2->id.'" class="btn btn-warning btn-icon-split">
 											<span class="icon text-white-50">
 											  <i class="fas fa-exclamation-triangle"></i>
 											</span>
@@ -132,15 +134,15 @@
 										<span class="icon text-white-50">
 										  <i class="fas fa-arrow-right"></i>
 										</span>
-										<span class="text">Valindando</span>
+										<span class="text">Ver</span>
 									  </a>';
 										}else{
-											echo '<a href="" class="btn btn-success btn-icon-split" data-toggle="modal" data-target="#confirmarTransaccion">
-											<span class="icon text-white-50">
-												<i class="fas fa-check"></i>
-											</span>
-											<span class="text">Procesada</span>
-										</a>';
+											echo '<a href="#" class="btn btn-secondary btn-icon-split">
+										<span class="icon text-white-50">
+										  <i class="fas fa-arrow-right"></i>
+										</span>
+										<span class="text">Ver</span>
+									  </a>';
 										}?>
 									</div>  
 								</td>
@@ -154,15 +156,20 @@
 
 									</div>  
 								</td>
+								<td>
+									<?php if ($row2->anexo != 'NULL') {
+												echo '<button class="btn btn-danger btnEliminartransacion" idtransacion="'.$row2->id.'"><i class="fa fa-trash"></i> Eliminar</button>';
+										}?>
+								</td>
 								<td><div class="btn-group">
 
 										<?php if ($row2->anexo != 'NULL') {
-												echo '<a href="" class="btn btn-light btn-icon-split">
-												<span class="icon text-gray-600">
-												  <i class="fas fa-check"></i>
-												</span>
-												<span class="text">Respuesta</span>
-											  </a>';
+												echo '<a href="'.URL_BASE.'giros/verconfirmacion&id='.$row2->id.'" class="btn btn-secondary btn-icon-split">
+										<span class="icon text-white-50">
+										  <i class="fas fa-arrow-right"></i>
+										</span>
+										<span class="text">Ver</span>
+									  </a>';
 										} ?>
 
 									
@@ -227,6 +234,8 @@
 		</div>
 	</div>
 </div>
+
+
 
 
 <!-- /.container-fluid -->
