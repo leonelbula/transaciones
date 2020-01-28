@@ -97,7 +97,7 @@ class Giros {
 		return $resul;
 	}
 	public function verTransaccionesUsuario() {		
-		$sql = "SELECT e.id ,e.valor, d.titular, d.num_cuenta FROM envios e, datos_bancario d WHERE e.id = {$this->getId()} AND e.id_datosbancarios = d.id AND e.id_usuario = {$this->getId_usuario()}";
+		$sql = "SELECT e.id ,e.valor,e.anexo_usuario,e.anexo, d.titular, d.num_cuenta FROM envios e, datos_bancario d WHERE e.id = {$this->getId()} AND e.id_datosbancarios = d.id AND e.id_usuario = {$this->getId_usuario()}";
 		$resul = $this->db->query($sql);
 		return $resul;
 	}

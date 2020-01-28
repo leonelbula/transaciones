@@ -32,10 +32,8 @@
 							<th>N° Cuenta</th>
 							<th>Valor</th>
 							<th>Estado</th>
-							<th>Anexo Usuario</th>
-							<th>Acciones</th>
-							<th>Observaciones</th>
-							<th>Confirmacion</th>
+							<th>Anexo</th>
+							<th>Acciones</th>											
 						</tr>
 					</thead>
 					<tfoot>
@@ -49,8 +47,7 @@
 							<th>Estado</th>
 							<th>Anexo Usuario</th>
 							<th>Acciones</th>
-							<th>Observaciones</th>
-							<th>Confirmacion</th>
+												
 						</tr>
 					</tfoot>
 					<tbody>
@@ -130,7 +127,7 @@
 											<span class="text">Confirmar</span>
 										</a>';
 										}else if($row2->estado == 1){
-										echo '<a href="#" class="btn btn-secondary btn-icon-split">
+										echo '<a href="'.URL_BASE.'giros/verconfirmacion&id='.$row2->id.'" class="btn btn-secondary btn-icon-split">
 										<span class="icon text-white-50">
 										  <i class="fas fa-arrow-right"></i>
 										</span>
@@ -156,26 +153,8 @@
 
 									</div>  
 								</td>
-								<td>
-									<?php if ($row2->anexo != 'NULL') {
-												echo '<button class="btn btn-danger btnEliminartransacion" idtransacion="'.$row2->id.'"><i class="fa fa-trash"></i> Eliminar</button>';
-										}?>
-								</td>
-								<td><div class="btn-group">
-
-										<?php if ($row2->anexo != 'NULL') {
-												echo '<a href="'.URL_BASE.'giros/verconfirmacion&id='.$row2->id.'" class="btn btn-secondary btn-icon-split">
-										<span class="icon text-white-50">
-										  <i class="fas fa-arrow-right"></i>
-										</span>
-										<span class="text">Ver</span>
-									  </a>';
-										} ?>
-
-									
-
-									</div>  
-								</td>
+								
+								
 							</tr>                    
 <?php endwhile; ?>
 					</tbody>

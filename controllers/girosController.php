@@ -298,7 +298,18 @@ class girosController {
 			
 		}
 	}
-	
+	public function verconfirmacion() {
+		require_once 'views/usuario_layout/header.php';
+		require_once 'views/usuario_layout/menu.php';		
+		if(isset($_GET['id'])){			
+			
+			require_once 'views/giros/verconfirmacion.php';
+		
+		} else {
+			
+		}
+			require_once 'views/usuario_layout/footer.php';
+	}
 	public function solicitudes() {
 		require_once 'views/usuario_layout/header.php';
 		require_once 'views/usuario_layout/menu.php';		
