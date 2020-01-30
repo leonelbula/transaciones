@@ -1,5 +1,6 @@
 <?php
 require_once 'models/Usuario.php';
+require_once 'models/Parametro.php';
 //require_once "extenciones/PHPMailer/PHPMailerAutoload.php";
 
 class homeController{
@@ -18,24 +19,32 @@ class homeController{
 		require_once 'views/usuario_layout/footer.php';
 		
 	}
+	static public function DatosConfignacion() {
+		$datos = new DatosConsignacion();
+		$detalles = $datos->MostrarInformacion();
+		return $detalles;
+	}
 	public function ingreso() {
 		require_once 'views/usuario_layout/header.php';	
 		require_once 'views/usuario_layout/cabecera.php';	
 		require_once 'views/usuario_layout/login.php';
 		require_once 'views/usuario_layout/footer.php';
 	}
+	
 	public function registro() {
 		require_once 'views/usuario_layout/header.php';	
 		require_once 'views/usuario_layout/cabecera.php';	
 		require_once 'views/usuario_layout/registro.php';
 		require_once 'views/usuario_layout/footer.php';
 	}
+	
 	public function restaurarpassword() {
 		require_once 'views/usuario_layout/header.php';
 		require_once 'views/usuario_layout/cabecera.php';			
 		require_once 'views/usuario_layout/restaurarpasword.php';
 		require_once 'views/usuario_layout/footer.php';
 	}
+	
 	public function login() {
 		require_once 'views/usuario_layout/header.php';
 		
@@ -307,6 +316,7 @@ class homeController{
 		}
 
 	}
+	
 	public function verificar() {
 		if(isset($_GET['id'])){
 			$valor = $_GET['id'];
@@ -321,6 +331,7 @@ class homeController{
 			require_once 'views/usuarios/verificar.php';
 		}
 	}
+	
 	public function salir() {
 		if (isset($_SESSION['identity'])) {
 			unset($_SESSION['identity']);

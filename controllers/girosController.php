@@ -28,6 +28,18 @@ class girosController {
 		$detalles = $solicitud->listarSolicitudes();
 		return $detalles;
 	}
+	public function verrespuesta() {
+		require_once 'views/usuario_layout/header.php';
+		require_once 'views/usuario_layout/menu.php';		
+		if(isset($_GET['id'])){			
+			
+			require_once 'views/giros/verrespuesta.php';
+		
+		} else {
+			
+		}
+			require_once 'views/usuario_layout/footer.php';
+	}
 	public function guardar() {
 		require_once 'views/usuario_layout/header.php';
 		if($_POST['idUsuario']){
@@ -38,7 +50,7 @@ class girosController {
 			if($id_usuario && $id_datosbancarios && $valor){
 				
 				$fecha = date('Y-m-d');
-				$estado = 2;
+				$estado = 5;
 				$anexo_usuario = 'NULL';
 				$anexo = 'NULL';
 				
@@ -133,6 +145,7 @@ class girosController {
 		}
 			require_once 'views/usuario_layout/footer.php';
 	}
+	
 	static public function transacionesUsuario($idtran,$idUsuario) {
 		
 			$giros = new Giros();
@@ -140,7 +153,87 @@ class girosController {
 			$giros->setId_usuario($idUsuario);
 			$detalles = $giros->verTransaccionesUsuario();
 			return $detalles;
+			
 	}
+	static public function RespuestaUsuario($id,$idUsuario) {
+		
+			$datos = new Solicitudes();
+			$datos->setId($id);
+			$datos->setId_usuario($idUsuario);
+			$detalles = $datos->verSolicitudes();
+			return $detalles;
+	}
+	
+	public function procesarpago() {
+		require_once 'views/usuario_layout/header.php';
+		require_once 'views/usuario_layout/menu.php';
+		if(isset($_POST['id'])){
+			$id = $_POST['id'];
+			$estado = $_POST['estado'];
+			$id_usuario = $_POST['idUsuario'];
+			$giros = new Giros();
+			$giros->setId($id);
+			$giros->setEstado($estado);
+			$giros->setId_usuario($id_usuario);
+			$resp = $giros->Estado();
+			
+			if($resp){
+				echo'<script>
+
+					swal({
+						  type: "success",
+						  title: "Registro en procesao de Validacion",
+						  showConfirmButton: true,
+						  confirmButtonText: "Cerrar"
+						  }).then(function(result){
+							if (result.value) {
+
+							window.location = "index";
+
+							}
+						})
+
+					</script>';
+			}else{
+				echo'<script>
+
+					swal({
+						  type: "error",
+						  title: "¡Registro no validado !",
+						  showConfirmButton: true,
+						  confirmButtonText: "Cerrar"
+						  }).then(function(result){
+							if (result.value) {
+
+							window.location = "index";
+
+							}
+						})
+
+			  	</script>';
+			}
+			
+		
+		} else {
+			echo'<script>
+
+					swal({
+						  type: "error",
+						  title: "¡Registro no validado !",
+						  showConfirmButton: true,
+						  confirmButtonText: "Cerrar"
+						  }).then(function(result){
+							if (result.value) {
+
+							window.location = "index";
+
+							}
+						})
+
+			  	</script>';
+		}
+	}
+	
 	public function confirmar() {
 		require_once 'views/usuario_layout/header.php';
 		require_once 'views/usuario_layout/menu.php';		
@@ -252,8 +345,10 @@ class girosController {
 		if(isset($_POST['id'])){
 			$id = $_POST['id'];
 			$estado = $_POST['estado'];
+			$id_usuario = $_POST['idUsuario'];
 			$giros = new Giros();
 			$giros->setId($id);
+			$giros->setId_usuario($id_usuario);
 			$giros->setEstado($estado);
 			$resp = $giros->Estado();
 			
@@ -295,7 +390,22 @@ class girosController {
 			
 		
 		} else {
-			
+			echo'<script>
+
+					swal({
+						  type: "error",
+						  title: "¡Registro no validado !",
+						  showConfirmButton: true,
+						  confirmButtonText: "Cerrar"
+						  }).then(function(result){
+							if (result.value) {
+
+							window.location = "index";
+
+							}
+						})
+
+			  	</script>';
 		}
 	}
 	public function verconfirmacion() {
@@ -304,6 +414,18 @@ class girosController {
 		if(isset($_GET['id'])){			
 			
 			require_once 'views/giros/verconfirmacion.php';
+		
+		} else {
+			
+		}
+			require_once 'views/usuario_layout/footer.php';
+	}
+	public function volante() {
+		require_once 'views/usuario_layout/header.php';
+		
+		if(isset($_GET['id'])){			
+			
+			require_once 'views/giros/volante.php';
 		
 		} else {
 			

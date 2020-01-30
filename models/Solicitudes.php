@@ -75,7 +75,12 @@ class Solicitudes {
 		$this->db = Database::connect();
 	}
 	public function listarSolicitudes() {		
-		$sql = "SELECT * FROM solicitudes WHERE id_usuario = {$this->getId_usuario()} AND estado = 1";
+		$sql = "SELECT * FROM solicitudes WHERE id_usuario = {$this->getId_usuario()}";
+		$resul = $this->db->query($sql);
+		return $resul;
+	}
+	public function verSolicitudes() {		
+		$sql = "SELECT * FROM solicitudes WHERE id = {$this->getId()} AND id_usuario = {$this->getId_usuario()}";
 		$resul = $this->db->query($sql);
 		return $resul;
 	}

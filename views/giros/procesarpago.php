@@ -52,6 +52,9 @@
 								</div>
 
 								<form  method="post" action="<?= URL_BASE ?>giros/procesarpago">
+									<input name="id" type="hidden" value="<?= $_GET['id'] ?>"/>
+									<input name="idUsuario" type="hidden" value="<?= $_SESSION['identity']->id ?>"/>
+									<input name="estado" type="hidden"  value="4"/>
 									<center>
 										<button class="btn btn-primary" type="submit">
 											Procesar Transaccion 
@@ -59,9 +62,10 @@
 									</center>
 							</form>
 								<form class="" method="post" action="<?= URL_BASE ?>giros/posponer">
-						<input name="id" type="hidden" value="<?= $_GET['id'] ?>"/>
-						<input name="estado" type="hidden" value="3"/>
-						<div class="modal-footer">
+								<input name="id" type="hidden" value="<?= $_GET['id'] ?>"/>
+								<input name="idUsuario" type="hidden" value="<?= $_SESSION['identity']->id ?>"/>
+								<input name="estado" type="hidden"  value="5"/>
+								<div class="modal-footer">
 
 							<button class="btn btn-secondary" type="submit" >Posponer</button>
 

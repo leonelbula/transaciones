@@ -75,9 +75,11 @@
 								</td>
 								
 								<td><div class="btn-group">
-
-										<?php if ($row2->anexo != 'NULL') {
-												echo '<a href="" class="btn btn-light btn-icon-split">
+										
+										<?php
+										
+										if ($row2->respuesta != '') {
+												echo '<a href="'.URL_BASE.'giros/verrespuesta&id='.$row2->id.'" class="btn btn-light btn-icon-split">
 												<span class="icon text-gray-600">
 												  <i class="fas fa-check"></i>
 												</span>

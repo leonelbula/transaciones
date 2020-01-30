@@ -81,12 +81,19 @@
 								<td><?= $num_cuenta ?></td>
 								<td><?= $row2->valor ?></td>
 								<td><?php
-									if ($row2->estado == 3) {
+									if ($row2->estado == 4) {
 										echo '<a href="" class="btn btn-primary btn-icon-split">
 											<span class="icon text-white-50">
 											  <i class="fas fa-flag"></i>
 											</span>
 											<span class="text">En Espera</span>
+										  </a>';
+									}elseif ($row2->estado == 3) {
+										echo '<a href="" class="btn btn-primary btn-icon-split">
+											<span class="icon text-white-50">
+											  <i class="fas fa-flag"></i>
+											</span>
+											<span class="text">En Validacion</span>
 										  </a>';
 									} elseif ($row2->estado == 2) {
 										echo '<a href="" class="btn btn-warning btn-icon-split">
@@ -112,12 +119,26 @@
 									}
 									?></td>
 								<td><div class="btn-group">
-										<?php if ($row2->estado == 3) {
+										<?php if ($row2->estado == 5) {
 										echo '<a href="'.URL_BASE.'giros/procesar&id='.$row2->id.'" class="btn btn-info btn-icon-split">
 												<span class="icon text-white-50">
 												  <i class="fas fa-info-circle"></i>
 												</span>
 												<span class="text">Continuar</span>
+											  </a>';
+										}else if ($row2->estado == 4) {
+										echo '<a href="" class="btn btn-info btn-icon-split">
+												<span class="icon text-white-50">
+												  <i class="fas fa-info-circle"></i>
+												</span>
+												<span class="text">En Validando</span>
+											  </a>';
+										}else if ($row2->estado == 3) {
+										echo '<a href="'.URL_BASE.'giros/volante&id='.$row2->id.'"  target="_blank" class="btn btn-info btn-icon-split">
+												<span class="icon text-white-50">
+												  <i class="fas fa-info-circle"></i>
+												</span>
+												<span class="text">Validado</span>
 											  </a>';
 										} else if($row2->estado == 2){
 											echo '<a href="'.URL_BASE.'giros/confirmar&id='.$row2->id.'" class="btn btn-warning btn-icon-split">
@@ -145,7 +166,7 @@
 								</td>
 								<td><div class="btn-group">
 
-										<?php if ($row2->estado == 3 || $row2->estado == 2) {
+										<?php if ($row2->estado != 1 ) {
 												echo '<button class="btn btn-danger btnEliminartransacion" idtransacion="'.$row2->id.'"><i class="fa fa-trash"></i> Eliminar</button>';
 										}?>
 

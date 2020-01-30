@@ -118,7 +118,7 @@ class Giros {
 		return $resp;
 	}
 	public function Estado() {
-		$sql = "UPDATE envios SET estado = {$this->getEstado()} WHERE id = {$this->getId()}";
+		$sql = "UPDATE envios SET estado = {$this->getEstado()} WHERE id = {$this->getId()} AND id_usuario = {$this->getId_usuario()}";
 		$resul = $this->db->query($sql);
 		$resp = FALSE;
 		
