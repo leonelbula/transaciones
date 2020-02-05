@@ -1,6 +1,7 @@
 <?php
 require_once 'models/Usuario.php';
 require_once 'models/Parametro.php';
+require_once 'models/Contenido.php';
 //require_once "extenciones/PHPMailer/PHPMailerAutoload.php";
 
 class homeController{
@@ -22,6 +23,11 @@ class homeController{
 	static public function DatosConfignacion() {
 		$datos = new DatosConsignacion();
 		$detalles = $datos->MostrarInformacion();
+		return $detalles;
+	}
+	static public function Contenido() {
+		$datos = new Contenido();
+		$detalles = $datos->MostrarContenido();
 		return $detalles;
 	}
 	public function ingreso() {

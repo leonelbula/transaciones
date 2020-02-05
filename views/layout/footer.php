@@ -3,10 +3,10 @@
         <div class="container">
             <div class="">
                 <div class="site-logo text-center py-4">
-                    <a href="#"><img src="<?=URL_BASE?>assets/img/logo.png" alt="logo"></a>
+                    <a href="#"><img src="<?=URL_BASE?>assets/img/logocolcambios.png" width="200" alt="logo" alt="logo"></a>
                 </div>
                 <div class="social text-center">
-                    <h5 class="text-uppercase">Follow me</h5>
+                    <h5 class="text-uppercase">Nuestras Redes Sociales</h5>
                     <a href="#"><i class="fab fa-facebook"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-youtube"></i></a>
